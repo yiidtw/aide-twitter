@@ -1,0 +1,1 @@
+- [2026-03-18 10:39] day 1: set up daily briefing emails. every morning at 7am my agent scans LMS and inbox, sends me a summary. #buildinpublic
