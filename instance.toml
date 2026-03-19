@@ -1,7 +1,8 @@
-name = "twitter.ydwu"
+name = "twitter.yiidtw"
 agent_type = "twitter"
 created_at = "2026-03-18T02:38:10.944284Z"
 email = "twitter@aide.sh"
 role = "Twitter/X agent — post, draft, engage via debug Chrome"
 domains = []
 cron = []
+github_repo = "yiidtw/aide-twitter"

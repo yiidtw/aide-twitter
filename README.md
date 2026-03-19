@@ -1,5 +1,3 @@
-# twitter
+# twitter.yiidtw
 
-Twitter/X agent — post, draft, engage via debug Chrome
-
-Powered by [aide.sh](https://aide.sh)
+See [persona.md](persona.md) for agent personality and rules.
