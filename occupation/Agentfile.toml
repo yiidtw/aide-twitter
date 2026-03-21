@@ -8,7 +8,7 @@ author = "ydwu"
 file = "persona.md"
 
 [skills.tweet]
-script = "skills/tweet.sh"
+script = "skills/tweet.ts"
 description = "Post a tweet via debug Chrome"
 usage = "tweet <text>"
 

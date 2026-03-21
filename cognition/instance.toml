@@ -6,3 +6,5 @@ role = "Twitter/X agent — post, draft, engage via debug Chrome"
 domains = []
 cron = []
 github_repo = "yiidtw/aide-twitter"
+uuid = "0b9e8c83-99c6-4a40-bb34-a9b649c43646"
+machine_id = "Mac.hitronhub.home"
