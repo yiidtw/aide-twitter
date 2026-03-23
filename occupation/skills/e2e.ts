@@ -123,6 +123,15 @@ async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     fail('no compose draft tabs after cleanup', draftTabs + ' compose tab(s) still open');
   }
 
+  // ── Cleanup: close all tabs opened during test ──
+  const initialUrls = new Set(['about:blank']);
+  for (const p of ctx.pages()) {
+    const u = p.url();
+    if (u.includes('compose/post') || (u.includes('x.com/yiidtw') && p !== page)) {
+      await p.close().catch(() => {});
+    }
+  }
+
   // ── Summary ──
   console.log('\\n── Summary ──');
   console.log(passed + ' passed, ' + failed + ' failed');
