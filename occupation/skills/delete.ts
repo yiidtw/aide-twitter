@@ -10,7 +10,14 @@ const { chromium } = require('playwright-core');
   const browser = await chromium.connectOverCDP('http://localhost:9222', { timeout: 15000 });
   const ctx = browser.contexts()[0];
   const page = await ctx.newPage();
+  // Dismiss any leftover compose drafts first
   await page.goto('https://x.com/yiidtw', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  const discard = page.locator('[data-testid="confirmationSheetConfirm"]');
+  if (await discard.isVisible({ timeout: 2000 }).catch(() => false)) {
+    await discard.click();
+    await new Promise(r => setTimeout(r, 1000));
+    await page.goto('https://x.com/yiidtw', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  }
   await page.waitForSelector('[data-testid="tweet"]', { timeout: 20000 });
   await new Promise(r => setTimeout(r, 2000));
 

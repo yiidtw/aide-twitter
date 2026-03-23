@@ -28,6 +28,12 @@ const { chromium } = require('playwright-core');
   await new Promise(r => setTimeout(r, 3000));
   const url = page.url();
   const gone = !url.includes('compose') || await page.$('[data-testid="tweetTextarea_0"]') === null;
+  // Dismiss any draft dialog before closing
+  const discard = page.locator('[data-testid="confirmationSheetConfirm"]');
+  if (await discard.isVisible({ timeout: 1000 }).catch(() => false)) {
+    await discard.click();
+    await new Promise(r => setTimeout(r, 500));
+  }
   console.log(gone ? 'POSTED' : 'FAILED');
   await page.close();
   await browser.close();
