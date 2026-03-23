@@ -19,7 +19,7 @@ const { chromium } = require('playwright-core');
   const browser = await chromium.connectOverCDP('http://localhost:9222', { timeout: 15000 });
   const ctx = browser.contexts()[0];
   const page = await ctx.newPage();
-  await page.goto('https://x.com/compose/post', { waitUntil: 'networkidle', timeout: 30000 });
+  await page.goto('https://x.com/compose/post', { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForSelector('[data-testid="tweetTextarea_0"]', { timeout: 20000 });
   await page.click('[data-testid="tweetTextarea_0"]');
   await page.getByRole('textbox', { name: 'Post text' }).pressSequentially(${JSON.stringify(text)});
