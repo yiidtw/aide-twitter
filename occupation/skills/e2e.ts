@@ -96,16 +96,31 @@ async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     fail('tweet no longer on profile', 'still visible: ' + afterDelete.substring(0, 80));
   }
 
-  // ── Step 5: Verify no compose drafts ──
+  // ── Step 5: Abort any compose drafts, then verify clean ──
   console.log('\\n── Step 5: Verify no compose drafts ──');
+  for (const p of ctx.pages()) {
+    if (p.url().includes('compose/post')) {
+      const textarea = p.locator('[data-testid="tweetTextarea_0"]');
+      if (await textarea.isVisible({ timeout: 1000 }).catch(() => false)) {
+        await p.keyboard.press('Escape');
+        await sleep(500);
+        const d = p.locator('[data-testid="confirmationSheetConfirm"]');
+        if (await d.isVisible({ timeout: 1000 }).catch(() => false)) {
+          await d.click();
+          await sleep(500);
+        }
+      }
+      await p.close();
+    }
+  }
   let draftTabs = 0;
   for (const p of ctx.pages()) {
     if (p.url().includes('compose/post')) draftTabs++;
   }
   if (draftTabs === 0) {
-    ok('no compose draft tabs');
+    ok('no compose draft tabs after cleanup');
   } else {
-    fail('no compose draft tabs', draftTabs + ' compose tab(s) still open');
+    fail('no compose draft tabs after cleanup', draftTabs + ' compose tab(s) still open');
   }
 
   // ── Summary ──
