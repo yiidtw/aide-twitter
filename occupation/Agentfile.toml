@@ -12,6 +12,26 @@ script = "skills/tweet.ts"
 description = "Post a tweet via debug Chrome"
 usage = "tweet <text>"
 
+[skills.check]
+script = "skills/check.ts"
+description = "Read latest tweets from timeline"
+usage = "check [count]"
+
+[skills.engage]
+script = "skills/engage.ts"
+description = "Check notifications and recent mentions"
+usage = "engage"
+
+[skills.delete]
+script = "skills/delete.ts"
+description = "Delete latest N tweets from own profile"
+usage = "delete [count]"
+
+[skills.abort]
+script = "skills/abort.ts"
+description = "Dismiss compose drafts and close compose tabs"
+usage = "abort"
+
 [skills.draft]
 script = "skills/draft.sh"
 description = "Save a draft tweet for later"
@@ -22,10 +42,10 @@ script = "skills/drafts.sh"
 description = "List saved drafts"
 usage = "drafts"
 
-[skills.engage]
-script = "skills/engage.sh"
-description = "Check notifications and recent mentions"
-usage = "engage"
+[skills.e2e]
+script = "skills/e2e.ts"
+description = "End-to-end test: tweet, check, delete, verify no draft"
+usage = "e2e"
 
 [knowledge]
 dir = "knowledge/"
